@@ -39,9 +39,9 @@ end)
 -------------------------------
 
 hl.env("XCURSOR_SIZE", "24")
-hl.env("XCURSOR_THEME", "Simp1e-Nord-Light")
+hl.env("XCURSOR_THEME", "Catppuccin Mocha Dark")
 hl.env("HYPRCURSOR_SIZE", "24")
-hl.env("HYPRCURSOR_THEME", "Simp1e-Nord-Light")
+hl.env("HYPRCURSOR_THEME", "Catppuccin Mocha Dark")
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "wayland")
 hl.env("GDK_SCALE", "1")
 
@@ -60,8 +60,8 @@ hl.config({
   },
 
   decoration = {
-    rounding = 0,
-    rounding_power = 0,
+    rounding = 22,
+    rounding_power = 2,
 
     active_opacity = 1.0,
     inactive_opacity = 1.0,

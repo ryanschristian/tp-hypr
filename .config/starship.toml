@@ -1,135 +1,41 @@
-format = """
-[░▒▓](#2e3440)\
-$os\
-$username\
-[](bg:#3b4252 fg:#2e3440)\
-$directory\
-[](fg:#3b4252 bg:#434c5e)\
-$git_branch\
-$git_status\
-[](fg:#434c5e bg:#4c566a)\
-$c\
-$python\
-$elixir\
-$elm\
-$golang\
-$haskell\
-$java\
-$julia\
-$nodejs\
-$nim\
-$rust\
-$scala\
-[](fg:#4c566a bg:#5e81ac)\
-$docker_context\
-[](fg:#5e81ac bg:#6272a4)\
-$time\
-[ ](fg:#6272a4)\
-\n$character"""
-#add_newline = false
+palette = "dracula"
 
-[line_break]
-disabled = false
+[aws]
+style = "bold orange"
 
-[username]
-show_always = true
-style_user = "bg:#2e3440"
-style_root = "bg:#9A348E"
-format = '[  $user ]($style)'
-disabled = false
+[character]
+error_symbol = "[λ](bold red)"
+success_symbol = "[λ](bold green)"
 
-[os]
-style = "bg:#9A348E"
-disabled = true # Disabled by default
+[cmd_duration]
+style = "bold yellow"
 
 [directory]
-style = "bg:#3b4252"
-format = "[ $path ]($style)"
-truncation_length = 3
-truncation_symbol = "…/"
-
-[directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
-
-[c]
-symbol = " "
-style = "bg:#4c566a"
-format = '[ $symbol ($version) ]($style)'
-
-[python]
-symbol = " "
-style = "bg:#4c566a"
-format = '[ $symbol ($version) ]($style)'
-
-[docker_context]
-symbol = " "
-style = "bg:#5e81ac"
-format = '[ $symbol $context ]($style) $path'
-
-[elixir]
-symbol = " "
-style = "bg:#434c5e"
-format = '[ $symbol ($version) ]($style)'
-
-[elm]
-symbol = " "
-style = "bg:#434c5e"
-format = '[ $symbol ($version) ]($style)'
+style = "bold green"
 
 [git_branch]
-symbol = ""
-style = "bg:#434c5e"
-format = '[ $symbol $branch ]($style)'
+style = "bold pink"
 
 [git_status]
-style = "bg:#434c5e"
-format = '[$all_status$ahead_behind ]($style)'
+style = "bold red"
 
-[golang]
-symbol = " "
-style = "bg:#434c5e"
-format = '[ $symbol ($version) ]($style)'
+[hostname]
+style = "bold purple"
 
-[haskell]
-symbol = " "
-style = "bg:#434c5e"
-format = '[ $symbol ($version) ]($style)'
+[username]
+format = "[$user]($style) on "
+style_user = "bold cyan"
 
-[java]
-symbol = " "
-style = "bg:#434c5e"
-format = '[ $symbol ($version) ]($style)'
-
-[julia]
-symbol = " "
-style = "bg:#434c5e"
-format = '[ $symbol ($version) ]($style)'
-
-[nodejs]
-symbol = ""
-style = "bg:#434c5e"
-format = '[ $symbol ($version) ]($style)'
-
-[nim]
-symbol = " "
-style = "bg:##434c5e"
-format = '[ $symbol ($version) ]($style)'
-
-[rust]
-symbol = ""
-style = "bg:#434c5e"
-format = '[ $symbol ($version) ]($style)'
-
-[scala]
-symbol = " "
-style = "bg:#434c5e"
-format = '[ $symbol ($version) ]($style)'
-
-[time]
-disabled = false
-time_format = "%l:%M %p" # Hour:Minute Format
-style = "bg:#6272a4"
-format = '[   $time ]($style)'
+# Define Dracula color palette
+[palettes.dracula]
+background = "#282a36"
+current_line = "#44475a"
+foreground = "#f8f8f2"
+comment = "#6272a4"
+cyan = "#8be9fd"
+green = "#50fa7b"
+orange = "#ffb86c"
+pink = "#ff79c6"
+purple = "#bd93f9"
+red = "#ff5555"
+yellow = "#f1fa8c"
