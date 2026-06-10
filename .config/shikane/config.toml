@@ -1,0 +1,29 @@
+[[profile]]
+name = "docked"
+exec = ["notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\""]
+
+  [[profile.output]]
+  enable = false
+  search = ["m=0x40A9", "s=", "v=Lenovo Group Limited"]
+
+  [[profile.output]]
+  enable = true
+  search = ["m=HP HC270", "s=CNK7012JT6", "v=HP Inc."]
+  mode = "2560x1440@59.951Hz"
+  position = "0,0"
+  scale = 1.0
+  transform = "normal"
+  adaptive_sync = false
+
+[[profile]]
+name = "undocked"
+exec = ["notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\""]
+  
+  [[profile.output]]
+  search = ["m=0x40A9", "s=", "v=Lenovo Group Limited"]
+  enable = true
+  mode = "1920x1080@60Hz"
+  position = "0,0"
+  scale = 1.0
+  transform = "normal"
+  adaptive_sync = false

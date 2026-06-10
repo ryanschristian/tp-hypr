@@ -6,12 +6,13 @@
 ---- MONITORS ----
 ------------------
 
-hl.monitor({
-  output = "",
-  mode = "preferred",
-  position = "auto",
-  scale = "1",
-})
+function mToggle()
+  if hl.get_monitor("eDP-1") ~= nil then
+    hl.monitor({ output = "eDP-1", disabled = true })
+  else
+    hl.monitor({ output = "eDP-1", disabled = false })
+  end
+end
 
 ---------------------
 ---- MY PROGRAMS ----
@@ -27,10 +28,11 @@ local browser = "zen-browser"
 -------------------
 
 hl.on("hyprland.start", function ()
-  hl.exec_cmd("kanshi")
+  hl.exec_cmd("/home/ryan/.cargo/bin/shikane")
   hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
   hl.exec_cmd("qs -c noctalia-shell")
   hl.exec_cmd("hyprpm reload")
+  hl.dsp.focus({ workspace = "1" })
   hl.exec_cmd(terminal)
 end)
 
@@ -39,10 +41,11 @@ end)
 -------------------------------
 
 hl.env("XCURSOR_SIZE", "24")
-hl.env("XCURSOR_THEME", "Catppuccin Mocha Dark")
+hl.env("XCURSOR_THEME", "Dracula-cursors")
 hl.env("HYPRCURSOR_SIZE", "24")
-hl.env("HYPRCURSOR_THEME", "Catppuccin Mocha Dark")
+hl.env("HYPRCURSOR_THEME", "Dracula-cursors")
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "wayland")
+hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
 hl.env("GDK_SCALE", "1")
 
 -----------------------
@@ -52,7 +55,7 @@ hl.env("GDK_SCALE", "1")
 hl.config({
   general = {
     gaps_in = 4,
-    gaps_out = 15,
+    gaps_out = 18,
     border_size = 2,
     resize_on_border = false,
     allow_tearing = false,
@@ -60,7 +63,7 @@ hl.config({
   },
 
   decoration = {
-    rounding = 22,
+    rounding = 10,
     rounding_power = 2,
 
     active_opacity = 1.0,
@@ -157,7 +160,7 @@ hl.config({
 
     follow_mouse = 1,
 
-    sensitivity = 0.3,
+    sensitivity = 0.5,
 
     touchpad = {
       natural_scroll = true,
@@ -188,10 +191,12 @@ hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind("ALT + SPACE", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("/home/ryan/.cargo/bin/shikane"))
+hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("/home/ryan/.config/hypr/scripts/monitor-switch.sh"))
 
 hl.bind(mainMod .. " + escape", hl.dsp.exec_cmd("qs -c noctalia-shell ipc call sessionMenu toggle"))
 hl.bind(mainMod .. " + w", hl.dsp.exec_cmd("qs -c noctalia-shell ipc call bar toggle"))
