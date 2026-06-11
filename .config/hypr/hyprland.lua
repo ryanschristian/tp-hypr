@@ -197,6 +197,7 @@ hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
 
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
+
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
     hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}))
@@ -294,5 +295,6 @@ hl.config({
         },
     },
 })
+
 -- This loads Noctalia-generated Hyprland colors.
 dofile("/home/ryan/.config/hypr/noctalia/noctalia-colors.lua")
