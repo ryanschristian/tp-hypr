@@ -79,7 +79,7 @@
         "widgets": {
             "center": [
                 {
-                    "colorizeIcons": false,
+                    "colorizeIcons": true,
                     "hideMode": "hidden",
                     "id": "ActiveWindow",
                     "maxWidth": 450,
@@ -99,7 +99,7 @@
                     "icon": "rocket",
                     "iconColor": "none",
                     "id": "Launcher",
-                    "useDistroLogo": true
+                    "useDistroLogo": false
                 },
                 {
                     "characterCount": 2,
@@ -114,7 +114,7 @@
                     "iconScale": 0.8,
                     "id": "Workspace",
                     "labelMode": "none",
-                    "occupiedColor": "secondary",
+                    "occupiedColor": "none",
                     "pillSize": 0.5,
                     "showApplications": false,
                     "showApplicationsHover": false,
@@ -193,7 +193,7 @@
                     "textColor": "none"
                 },
                 {
-                    "clockColor": "primary",
+                    "clockColor": "secondary",
                     "customFont": "",
                     "formatHorizontal": "h:mm AP\\nMMM dd, yyyy",
                     "formatVertical": "HH mm - dd MM",
@@ -402,7 +402,7 @@
         "lockScreenMonitors": [
         ],
         "lockScreenTint": 0,
-        "passwordChars": false,
+        "passwordChars": true,
         "radiusRatio": 1,
         "reverseScroll": false,
         "scaleRatio": 1,
