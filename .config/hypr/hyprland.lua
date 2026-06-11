@@ -2,18 +2,6 @@
 ---- ### RYAN'S HYPRLAND CONFIG ### ----
 ---- ############################## ----
 
-------------------
----- MONITORS ----
-------------------
-
-function mToggle()
-  if hl.get_monitor("eDP-1") ~= nil then
-    hl.monitor({ output = "eDP-1", disabled = true })
-  else
-    hl.monitor({ output = "eDP-1", disabled = false })
-  end
-end
-
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
@@ -28,11 +16,10 @@ local browser = "zen-browser"
 -------------------
 
 hl.on("hyprland.start", function ()
-  hl.exec_cmd("/home/ryan/.cargo/bin/shikane")
+  hl.exec_cmd("$HOME/.cargo/bin/shikane")
   hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
   hl.exec_cmd("qs -c noctalia-shell")
   hl.exec_cmd("hyprpm reload")
-  hl.dsp.focus({ workspace = "1" })
   hl.exec_cmd(terminal)
 end)
 
@@ -195,8 +182,7 @@ hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("command -v hyprshutdown >/de
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind("ALT + SPACE", hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("/home/ryan/.cargo/bin/shikane"))
-hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("/home/ryan/.config/hypr/scripts/monitor-switch.sh"))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("$HOME/.cargo/bin/shikane"))
 
 hl.bind(mainMod .. " + escape", hl.dsp.exec_cmd("qs -c noctalia-shell ipc call sessionMenu toggle"))
 hl.bind(mainMod .. " + w", hl.dsp.exec_cmd("qs -c noctalia-shell ipc call bar toggle"))
@@ -304,7 +290,7 @@ hl.config({
             save = true,
             clipboard = true,
             show_thumbnail = true,
-            helper = "/home/ryan/.local/bin/hyprcapture-ui",
+            helper = "$HOME/.local/bin/hyprcapture-ui",
         },
     },
 })

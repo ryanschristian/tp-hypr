@@ -1,6 +1,6 @@
 [[profile]]
 name = "docked"
-exec = ["notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\""]
+exec = ["notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\" & hyprctl dispatch 'hl.dsp.focus({ workspace = 1})'"]
 
   [[profile.output]]
   enable = false
