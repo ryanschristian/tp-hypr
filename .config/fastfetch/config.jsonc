@@ -17,30 +17,27 @@
         }
     },
     "modules": [
-        {
-            "type": "title",
-            "color": {
-                "user": "cyan",
-                "at": "cyan",
-                "host": "cyan"
-            }
-        },
+        //{
+        //    "type": "title",
+        //    "color": {
+        //        "user": "cyan",
+        //        "at": "cyan",
+        //        "host": "cyan"
+        //    }
+        //},
         "os",
         "kernel",
-        "initsystem",
-        "shell",
         "cpu",
         "memory",
-        "de",
         "wm",
         "packages",
-        "uptime",
-        {
-            "type": "colors",
-            "key": "Colors", // For printing icon
-            "block": {
-                "range": [1, 6]
-            }
-        }
+        "uptime"
+       // {
+       //    "type": "colors",
+       //     "key": "Colors", // For printing icon
+       //     "block": {
+       //         "range": [1, 6]
+       //     }
+       // }
     ]
 }

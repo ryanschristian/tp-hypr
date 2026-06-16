@@ -6,7 +6,7 @@
 ---- MY PROGRAMS ----
 ---------------------
 
-local terminal = "ghostty"
+local terminal = "foot"
 local fileManager = "thunar"
 local menu = "qs -c noctalia-shell ipc call launcher toggle"
 local browser = "zen-browser"
