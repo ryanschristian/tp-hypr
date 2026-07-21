@@ -8,17 +8,17 @@
 
 local terminal = "foot"
 local fileManager = "thunar"
-local menu = "qs -c noctalia-shell ipc call launcher toggle"
-local browser = "zen-browser"
+local browser = "helium-browser"
+local ipc = "noctalia msg "
 
 -------------------
 ---- AUTOSTART ----
 -------------------
 
 hl.on("hyprland.start", function ()
+  hl.exec_cmd("/usr/lib/hyprpolkitagent/hyprpolkitagent")
+  hl.exec_cmd("noctalia")
   hl.exec_cmd("$HOME/.cargo/bin/shikane")
-  hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
-  hl.exec_cmd("qs -c noctalia-shell")
   hl.exec_cmd("hyprpm reload")
   hl.exec_cmd(terminal)
 end)
@@ -28,12 +28,14 @@ end)
 -------------------------------
 
 hl.env("XCURSOR_SIZE", "24")
-hl.env("XCURSOR_THEME", "Dracula-cursors")
+hl.env("XCURSOR_THEME", "Bibata-Modern-Classic")
 hl.env("HYPRCURSOR_SIZE", "24")
-hl.env("HYPRCURSOR_THEME", "Dracula-cursors")
+hl.env("HYPRCURSOR_THEME", "Bibata-Modern-Classic")
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "wayland")
+hl.env("QT_QPA_PLATFORM", "wayland;xcb")
 hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
 hl.env("GDK_SCALE", "1")
+hl.env("GDK_BACKEND", "wayland,x11")
 
 -----------------------
 ---- LOOK AND FEEL ----
@@ -50,7 +52,7 @@ hl.config({
   },
 
   decoration = {
-    rounding = 10,
+    rounding = 6,
     rounding_power = 2,
 
     active_opacity = 1.0,
@@ -128,7 +130,7 @@ hl.config({
 
 hl.config({
   misc = {
-    force_default_wallpaper = -1,
+    force_default_wallpaper = 0,
     disable_hyprland_logo = false,
   },
 })
@@ -181,13 +183,12 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind("ALT + SPACE", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("$HOME/.cargo/bin/shikane"))
 
-hl.bind(mainMod .. " + escape", hl.dsp.exec_cmd("qs -c noctalia-shell ipc call sessionMenu toggle"))
-hl.bind(mainMod .. " + w", hl.dsp.exec_cmd("qs -c noctalia-shell ipc call bar toggle"))
-hl.bind(mainMod .. " + l", hl.dsp.exec_cmd("qs -c noctalia-shell ipc call lockScreen lock"))
-hl.bind(mainMod .. " + space", hl.dsp.exec_cmd("qs -c noctalia-shell ipc call launcher emoji"))
+hl.bind("ALT + SPACE", hl.dsp.exec_cmd(ipc .. "panel-toggle launcher"))
+hl.bind("ALT + Tab", hl.dsp.exec_cmd(ipc .. "window-switcher"))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(ipc .. "session lock"))
+hl.bind(mainMod .. " + escape", hl.dsp.exec_cmd(ipc .. "panel-toggle session"))
 
 -- Workspace Binds
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
@@ -214,12 +215,11 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Media Controls
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
-hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
-hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(ipc .. "volume-up"), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(ipc .. "volume-down"),      { locked = true, repeating = true })
+hl.bind("XF86AudioMute",        hl.dsp.exec_cmd(ipc .. "volume-mute"),     { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd(ipc .. "brightness-up"),                  { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd(ipc .. "brightness-down"),                  { locked = true, repeating = true })
 
 hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
@@ -237,6 +237,35 @@ hl.bind(mainMod .. " + minus", hl.dsp.layout("colresize -0.1"))
 hl.bind(mainMod .. " + equal", hl.dsp.layout("colresize +0.1"))
 hl.bind(mainMod .. " + home", hl.dsp.layout("swapcol l"))
 hl.bind(mainMod .. " + end", hl.dsp.layout("swapcol r"))
+
+-- Switch Layouts
+hl.bind("SUPER + tab", function ()
+    local layouts     = { "scrolling", "dwindle", "master", "monocle" }
+    local workspace   = hl.get_active_workspace()
+	if hl.get_active_special_workspace() then
+		workspace = hl.get_active_special_workspace()
+	end
+
+    local next_layout = "dwindle"
+
+    if not workspace then
+        return
+    end
+
+    for i = 1, #layouts do
+        if layouts[i] == workspace.tiled_layout then
+            local next_layout_idx = (i % #layouts) + 1
+            next_layout = layouts[next_layout_idx]
+            break
+        end
+    end
+
+	if workspace.special then
+		hl.workspace_rule({ workspace = tostring(workspace.name), layout = next_layout })
+	else
+		hl.workspace_rule({ workspace = tostring(workspace.id), layout = next_layout })
+	end
+end)
 
 -- Print Screen
 hl.bind("print", function()
@@ -276,6 +305,23 @@ hl.window_rule({
     no_focus = true,
 })
 
+hl.window_rule({
+    match = { class = "dev.noctalia.Noctalia" },
+    float = true,
+    size = { 1080, 920 },
+})
+
+hl.layer_rule({
+  name = "noctalia",
+  match = {
+    namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$",
+  },
+  no_anim = true,
+  ignore_alpha = 0.5,
+  blur = true,
+  blur_popups = true,
+})
+
 -----------------
 ---- PLUGINS ----
 -----------------
@@ -298,3 +344,6 @@ hl.config({
 
 -- This loads Noctalia-generated Hyprland colors.
 dofile("/home/ryan/.config/hypr/noctalia/noctalia-colors.lua")
+
+-- For Noctalia Color templates
+require("noctalia").apply_theme()

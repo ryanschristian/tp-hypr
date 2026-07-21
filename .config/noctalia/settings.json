@@ -42,7 +42,7 @@
     "bar": {
         "autoHideDelay": 500,
         "autoShowDelay": 150,
-        "backgroundOpacity": 0.6,
+        "backgroundOpacity": 1,
         "barType": "floating",
         "capsuleColorKey": "none",
         "capsuleOpacity": 1,
@@ -50,7 +50,7 @@
         "density": "spacious",
         "displayMode": "always_visible",
         "enableExclusionZoneInset": true,
-        "fontScale": 1.2000000000000002,
+        "fontScale": 1.1099999999999999,
         "frameRadius": 12,
         "frameThickness": 8,
         "hideOnOverview": false,
@@ -78,6 +78,17 @@
         "widgetSpacing": 6,
         "widgets": {
             "center": [
+                {
+                    "colorizeIcons": true,
+                    "hideMode": "hidden",
+                    "id": "ActiveWindow",
+                    "maxWidth": 450,
+                    "scrollingMode": "hover",
+                    "showIcon": true,
+                    "showText": true,
+                    "textColor": "none",
+                    "useFixedWidth": false
+                }
             ],
             "left": [
                 {
@@ -182,7 +193,7 @@
                     "textColor": "none"
                 },
                 {
-                    "clockColor": "primary",
+                    "clockColor": "secondary",
                     "customFont": "",
                     "formatHorizontal": "h:mm AP\\nMMM dd, yyyy",
                     "formatVertical": "HH mm - dd MM",
@@ -650,10 +661,6 @@
             {
                 "enabled": true,
                 "id": "btop"
-            },
-            {
-                "enabled": true,
-                "id": "foot"
             }
         ],
         "enableUserTheming": false
