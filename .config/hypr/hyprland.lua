@@ -267,6 +267,7 @@ hl.bind("SUPER + tab", function ()
 	end
 end)
 
+-- Screenshots
 hl.bind("print", hl.dsp.exec_cmd(ipc .. "screenshot-fullscreen"))
 hl.bind(mainMod .. "+ print", hl.dsp.exec_cmd(ipc .. "screenshot-region"))
 
