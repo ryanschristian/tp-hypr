@@ -267,18 +267,8 @@ hl.bind("SUPER + tab", function ()
 	end
 end)
 
--- Print Screen
-hl.bind("print", function()
-    hl.plugin.hyprcapture.open()
-end)
-
-hl.bind(mainMod .. " + print", function()
-  hl.plugin.hyprcapture.open("window")
-end)
-
-hl.bind(mainMod .. " + SHIFT + print", function()
-    hl.plugin.hyprcapture.open("region")
-end)
+hl.bind("print", hl.dsp.exec_cmd(ipc .. "screenshot-fullscreen"))
+hl.bind(mainMod .. "+ print", hl.dsp.exec_cmd(ipc .. "screenshot-region"))
 
 ----------------------
 ---- WINDOW RULES ----
@@ -306,9 +296,17 @@ hl.window_rule({
 })
 
 hl.window_rule({
+    name = "noctalia float",
     match = { class = "dev.noctalia.Noctalia" },
     float = true,
     size = { 1080, 920 },
+})
+
+hl.window_rule({
+  name = "bitwarden float",
+  match = { class = "chrome-nngceckbapebfimnlniiiahkandclblb-Default" },
+  float = true,
+  size = { 480, 630 },
 })
 
 hl.layer_rule({
@@ -320,26 +318,6 @@ hl.layer_rule({
   ignore_alpha = 0.5,
   blur = true,
   blur_popups = true,
-})
-
------------------
----- PLUGINS ----
------------------
-
-hl.config({
-    plugin = {
-        hyprcapture = {
-            default_mode = "fullscreen",
-            fusion_mode = true,
-            confirm_before_capture = false,
-            fullscreen_scope = "all",
-            window_background = "follow-system",
-            save = true,
-            clipboard = true,
-            show_thumbnail = true,
-            helper = "$HOME/.local/bin/hyprcapture-ui",
-        },
-    },
 })
 
 -- This loads Noctalia-generated Hyprland colors.
